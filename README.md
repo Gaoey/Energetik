@@ -1,2 +1,2 @@
-# this file for Energetic team
-GaoEy
+#Energetik
+#SmartEnergyHackhathon2017
