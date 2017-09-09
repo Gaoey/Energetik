@@ -13,6 +13,12 @@
   top: 7px;
 }
 
+.header-text{
+  font-family: 'Aldrich';
+  position: absolute;
+  left: 9%;
+}
+
 .navbar-default{
   background-image: null
 }
@@ -46,9 +52,9 @@
   position:relative;
 }
 
-.thumbnail>img {
+.thumbnail>img, .img-circle {
   width:150px;
-  height:150px;
+  height:150px !important;
   border-radius: 50%;
 }
 
