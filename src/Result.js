@@ -41,7 +41,7 @@ class Result extends Component {
         const { thisImage } = this.state
         const unit = selectUnitFromType(arr[0])
         return (
-            <Col xs={6} md={4}>
+            <Col xs={12} md={4}>
                 <Thumbnail src={thisImage} alt="242x200">
                     <h3>REGION: {findRegion(arr[1])}</h3>
                     <p>Description</p>
