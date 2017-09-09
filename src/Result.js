@@ -96,7 +96,7 @@ class Result extends Component {
 
                         <Modal.Body>
                             <Row>
-                                <Col md={4} >
+                                <Col md={4} className="modal-image">
                                     <Image src={thisImage} circle thumbnail />
                                     <h3>REGION: {findRegion(arr[1])}</h3>
                                 </Col>

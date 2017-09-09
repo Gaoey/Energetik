@@ -19,6 +19,10 @@
   left: 9%;
 }
 
+.modal-image{
+  text-align: center
+}
+
 .navbar-default{
   background-image: null
 }
