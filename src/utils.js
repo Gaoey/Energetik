@@ -1,3 +1,5 @@
+import Papa from 'babyparse'
+
 export const findRegion = (num) => {
     switch (num) {
         case '14':
@@ -71,4 +73,22 @@ export const getImage = () => {
 
     const rand = Math.floor((Math.random() * ImageList.length))
     return ImageList[rand]
+}
+
+export const readTextFile = file => {
+    const rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = () => {
+        if (rawFile.readyState === 4) {
+            if (rawFile.status === 200 || rawFile.status == 0) {
+                const allText = rawFile.responseText
+                Papa.parse(allText, {
+                    complete: (results) => {
+                        return results.data
+                    }
+                })
+            }
+        }
+    };
+    rawFile.send(null);
 }

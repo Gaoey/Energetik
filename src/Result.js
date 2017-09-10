@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col, Thumbnail, Button, Table, Modal, Image } from 'react-bootstrap'
 import { region } from './Constant'
+import Papa from 'babyparse'
 import './App.css'
-import { findRegion, searchType, credit, currencyFormat, selectUnitFromType, getImage } from './utils'
+import { findRegion, searchType, credit, currencyFormat, selectUnitFromType, getImage, readTextFile } from './utils'
 
 class Result extends Component {
 
@@ -10,10 +11,16 @@ class Result extends Component {
         super(props)
         this.state = {
             modalShow: false,
-            thisImage: getImage()
+            thisImage: getImage(),
+            groups: ''
         }
         this.open = this.open.bind(this)
         this.close = this.close.bind(this)
+    }
+
+    componentDidMount() {
+        const file = require("./groups/" + this.props.arr[0] + "_" + this.props.arr[1] + ".csv")
+        this.readTextFile(file)
     }
 
     open = () => {
@@ -25,6 +32,30 @@ class Result extends Component {
     close = () => {
         this.setState({
             modalShow: false
+        })
+    }
+
+    readTextFile = file => {
+        const rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, false);
+        rawFile.onreadystatechange = () => {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200 || rawFile.status == 0) {
+                    const allText = rawFile.responseText
+                    this.generate(allText)
+                }
+            }
+        };
+        rawFile.send(null);
+    };
+
+    generate(text) {
+        Papa.parse(text, {
+            complete: (results) => {
+                this.setState({
+                    groups: results.data
+                })
+            }
         })
     }
 
@@ -40,8 +71,10 @@ class Result extends Component {
         // 8 is total size
         // 9 is region1
         const { arr } = this.props
+        const { groups } = this.state
         const { thisImage } = this.state
         const unit = selectUnitFromType(arr[0])
+        const isEmpty = groups !== null
         return (
             <Col xs={12} md={4}>
                 <Thumbnail src={thisImage} alt="242x200">
@@ -138,6 +171,12 @@ class Result extends Component {
                                             </tr>
                                         </tbody>
                                     </Table>
+                                </Col>
+                            </Row>
+                            {/* groups */}
+                            <Row>
+                                <Col md={4} className="modal-image">
+                                    <Image src={require("./images/listing.png")}/>
                                 </Col>
                             </Row>
                         </Modal.Body>
