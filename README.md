@@ -10,8 +10,8 @@ How To install
 
 How to use our Analytic Algorithm code that screens and groups customers
 // in Terminal
-python customer_screening_submission.py
-stata customer_screening_submission.do
+- python customer_screening_submission.py
+- stata customer_screening_submission.do
 
 
 
