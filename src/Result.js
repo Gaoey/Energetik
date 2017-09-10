@@ -35,16 +35,17 @@ class Result extends Component {
         // 3 is system size
         // 4 is payback period
         // 5 is pb cutoff
-        // 6 is num system
-        // 7 is total size
+        // 6 unit cost
+        // 7 is number of customer system
+        // 8 is total size
+        // 9 is region1
         const { arr } = this.props
         const { thisImage } = this.state
         const unit = selectUnitFromType(arr[0])
         return (
             <Col xs={12} md={4}>
                 <Thumbnail src={thisImage} alt="242x200">
-                    <h3>REGION: {findRegion(arr[1])}</h3>
-                    <p>Description</p>
+                    <h3>{arr[9]}</h3>
                     <Table responsive hover>
                         <tbody>
                             <tr>
@@ -53,12 +54,13 @@ class Result extends Component {
                             </tr>
                             <tr>
                                 <td className="right">Total System Size ({unit})</td>
-                                <td className="left">{currencyFormat(arr[7])}</td>
+                                <td className="left">{currencyFormat(arr[8])}</td>
                             </tr>
                             <tr>
                                 <td className="right">Number of Customer</td>
-                                <td className="left">{arr[6]}</td>
-                            </tr><tr>
+                                <td className="left">{arr[7]}</td>
+                            </tr>
+                            <tr>
                                 <td className="right">Credit Profile</td>
                                 <td className="left">{credit()}</td>
                             </tr>
@@ -76,6 +78,10 @@ class Result extends Component {
                                 <td className="right">Payback Period (years)</td>
                                 <td className="left">{Math.round((parseFloat(arr[4]) * 10) / 10)}</td>
                             </tr>
+                            <tr>
+                                <td className="right">Unit Cost (USD/KW)</td>
+                                <td className="left">{currencyFormat(arr[6])}</td>
+                            </tr>
                             {/* <tr>
                                 <td>PB Cut-Off</td><td>{arr[5]}</td>
                             </tr> */}
@@ -83,7 +89,7 @@ class Result extends Component {
                         </tbody>
                     </Table>
                     <p>
-                        <Button bsStyle="primary" onClick={() => this.open()}>BID SUBMIT</Button>
+                        <Button bsStyle="primary" onClick={() => this.open()}>SUBMIT BID</Button>
                     </p>
                 </Thumbnail>
 
@@ -98,7 +104,7 @@ class Result extends Component {
                             <Row>
                                 <Col md={4} className="modal-image">
                                     <Image src={thisImage} circle thumbnail />
-                                    <h3>REGION: {findRegion(arr[1])}</h3>
+                                    <h3>{arr[9]}</h3>
                                 </Col>
                                 <Col md={8} >
                                     <Table responsive hover>
@@ -109,11 +115,11 @@ class Result extends Component {
                                             </tr>
                                             <tr>
                                                 <td className="right">Total System Size ({unit})</td>
-                                                <td className="left">{currencyFormat(arr[7])}</td>
+                                                <td className="left">{currencyFormat(arr[8])}</td>
                                             </tr>
                                             <tr>
                                                 <td className="right">Number of Customer</td>
-                                                <td className="left">{arr[6]}</td>
+                                                <td className="left">{arr[7]}</td>
                                             </tr><tr>
                                                 <td className="right">Credit Profile</td>
                                                 <td className="left">{credit()}</td>
@@ -126,6 +132,10 @@ class Result extends Component {
                                                 <td className="right">Payback Period (years)</td>
                                                 <td className="left">{Math.round((parseFloat(arr[4]) * 10) / 10)}</td>
                                             </tr>
+                                            <tr>
+                                                <td className="right">Unit Cost (USD/KW)</td>
+                                                <td className="left">{currencyFormat(arr[6])}</td>
+                                            </tr>
                                         </tbody>
                                     </Table>
                                 </Col>
@@ -134,7 +144,7 @@ class Result extends Component {
 
                         <Modal.Footer>
                             <Button onClick={() => this.close()}>Close</Button>
-                            <Button bsStyle="primary" onClick={() => this.close()}>Save changes</Button>
+                            <Button bsStyle="primary" onClick={() => this.close()}>SUBMIT BID FORM</Button>
                         </Modal.Footer>
                     </Modal>
                 </div >
