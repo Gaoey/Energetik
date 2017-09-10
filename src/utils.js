@@ -37,7 +37,7 @@ export const searchType = (type) => {
         case 'Res':
             return 'Residential'
             break
-        case 'SGS_TOU':
+        case 'SGS':
             return 'Small Bussiness'
             break
         default: 'Industrial'

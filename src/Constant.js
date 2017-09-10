@@ -27,5 +27,5 @@ export const regionValues = [
     "Commercial": "MGS",
     "Residential": "Res",
     // "บ้านอยู่อาศัยตามค่าไฟTOU": "Res_TOU",
-    "Small Bussiness": "SGS_TOU"
+    "Small Bussiness": "SGS"
   }
